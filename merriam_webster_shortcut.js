@@ -20,19 +20,19 @@
     }
 
     document.addEventListener('keydown', function(event) {
-     if (!event.ctrlKey) {
+     if (!event.ctrlKey && !event.altKey) {
          return;
      }
-     if (event.ctrlKey && (event.key === 'a' || event.key === 'o')) {
+     if ((event.key === 'a' || event.key === 'o')) {
        event.preventDefault();
        document.getElementsByClassName('play-pron')[0].click();
        save2list();
-     } else if (event.ctrlKey && (event.key === 's' || event.key === 'l')) {
+     } else if ((event.key === 's' || event.key === 'l')) {
         event.preventDefault();
         save2list();
         var txt = document.querySelector('#s-term').value;
         window.localStorage.setItem('l:' + txt, txt);
-     } else if (event.ctrlKey && (event.key === 'f' || event.key === 'p')) {
+     } else if ((event.key === 'f' || event.key === 'p')) {
         event.preventDefault();
         document.querySelector('#s-term').focus();
         document.querySelector('#s-term').select();
