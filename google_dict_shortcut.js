@@ -26,10 +26,12 @@
      if (!event.ctrlKey) {
          return;
      }
-     event.preventDefault();
      if (event.ctrlKey && (event.key === 'a' || event.key === 'o')) {
+       event.preventDefault();
        document.getElementsByTagName('audio')[0].click();
      } else if (event.ctrlKey && (event.key === 's' || event.key === 'l')) {
+        event.preventDefault();
+
         var val = search_el().value;
         var store = window.localStorage;
         store.setItem('l:' + val, val);
@@ -41,6 +43,7 @@
             el.innerText += '❤';
         }
      } else if (event.ctrlKey && (event.key === 'f' || event.key === 'p')) {
+        event.preventDefault();
         var inputs = document.getElementsByTagName('input');
         var el2 = search_el();
         el2.focus();
