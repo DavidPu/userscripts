@@ -23,22 +23,23 @@
               body: req
             }).then(res => res.json())
               .then(res => console.log(res));
+        document.querySelector('.addtolist').innerHTML = '<a style="color:red">❤ Saved! ❤</a>';
     }
 
     document.addEventListener('keydown', function(event) {
-     if (!event.ctrlKey) {
+     if (!event.ctrlKey && !event.altKey) {
          return;
      }
-     if (event.ctrlKey && (event.key === 'a' || event.key === 'o')) {
+     if ((event.key === 'a' || event.key === 'o')) {
        event.preventDefault();
        document.getElementsByClassName('audio')[0].click();
-     } else if (event.ctrlKey && (event.key === 's' || event.key === 'l')) {
+       save2list();
+     } else if ((event.key === 's' || event.key === 'l')) {
         event.preventDefault();
         save2list();
-        document.querySelector('.addtolist').innerHTML = '<a style="color:red">❤ Saved! ❤</a>';
         var txt = document.querySelector('#search').value;
         window.localStorage.setItem('l:' + txt, txt);
-     } else if (event.ctrlKey && (event.key === 'f' || event.key === 'p')) {
+     } else if ((event.key === 'f' || event.key === 'p')) {
         event.preventDefault();
         document.querySelector('#search').focus();
         document.querySelector('#search').select();
