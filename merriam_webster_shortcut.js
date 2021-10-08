@@ -12,12 +12,22 @@
 (function() {
 
     // shortcuts for https://www.merriam-webster.com/dictionary
+    // https://www.merriam-webster.com/lapi/v1/wordlist/search?search=&sort=newest&filter=dt&page=1&perPage=10000
     function save2list() {
         var el = document.querySelector('#save-to-list-link');
         if (el && el.innerText != 'Saved!') {
             document.querySelector('#save-to-list-link').click();
         }
+        el = document.querySelector('#s-term');
+        if (el) {
+            var txt = el.value;
+            window.localStorage.setItem('l:' + txt, txt);
+        }
     }
+
+    document.body.style.backgroundColor= '#e6e6e6';
+     var el = document.querySelector('#definition-fixed-wrapper');
+     if (el) el.remove();
 
     document.addEventListener('keydown', function(event) {
      if (!event.ctrlKey && !event.altKey) {
@@ -30,13 +40,18 @@
      } else if ((event.key === 's' || event.key === 'l')) {
         event.preventDefault();
         save2list();
-        var txt = document.querySelector('#s-term').value;
-        window.localStorage.setItem('l:' + txt, txt);
      } else if ((event.key === 'f' || event.key === 'p')) {
         event.preventDefault();
         document.querySelector('#s-term').focus();
         document.querySelector('#s-term').select();
+     } else if (event.key === 'e') {
+         event.preventDefault();
+         // Thesaurus
+         document.querySelector('div.thesaurus-tab').click();
+     } else if (event.key === 'd') {
+         // Dictionary
+         event.preventDefault();
+         document.querySelector('div.dictionary-tab').click()
      }
-
     });
 })();
