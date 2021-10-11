@@ -66,6 +66,7 @@
         }
     }
 
+    // document.body.style.backgroundColor= '#e6e6e6';
     // shortcuts for Google dictionary
     document.addEventListener('keydown', function(event) {
         if (!event.ctrlKey && !event.altKey) {
